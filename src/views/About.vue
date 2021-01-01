@@ -1,6 +1,9 @@
 <template>
   <div ref="root" class="text-center">
-    <NoticeBar left-icon="volume-o" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+    <notice-bar
+      left-icon="volume-o"
+      text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+    />
     <p class="mg20">This is a root element</p>
     <div class="flex flex-column">
       <div class="flex flex-center mg-t10">
@@ -16,20 +19,20 @@
         <input type="tel" v-model.trim="formData.code" maxlength="6" />
       </div>
     </div>
-    <p class="mg-t10">{{formData}}</p>
+    <p class="mg-t10">{{ formData }}</p>
     <Button type="primary" @click="insertName()">姓名插入哈哈</Button>
     <Steps direction="vertical" :active="1">
       <Step>
         <h3>商品已下单</h3>
-        <p>{{twoNow}}</p>
+        <p>{{ twoNow }}</p>
       </Step>
       <Step>
         <h3>快件已被揽收</h3>
-        <p>{{now}}</p>
+        <p>{{ now }}</p>
       </Step>
       <Step>
         <h3>快件已发货</h3>
-        <p>{{now2}}</p>
+        <p>{{ now2 }}</p>
       </Step>
     </Steps>
   </div>

@@ -1,7 +1,23 @@
+const path = require('path')
+const vantTheme = path.resolve(__dirname, "./src/assets/theme.less")
+
 module.exports = {
   publicPath: "./",
   outputDir: "docs",
   productionSourceMap: false,
+  css: {
+    extract: true,
+    sourceMap: false,
+    loaderOptions: {
+      // less: {
+      //   lessOptions: {
+      //     modifyVars: {
+      //       hack: `true; @import "./src/assets/theme.less;"`
+      //     }
+      //   }
+      // }
+    }
+  },
   chainWebpack: config => {
     config.plugins.delete('preload')
     config.plugins.delete('prefetch')

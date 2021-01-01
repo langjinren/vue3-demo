@@ -1,5 +1,5 @@
 <template>
-  <button class="yui-button">
+  <button class="lang-button">
     <slot>按钮</slot>
   </button>
 </template>
@@ -8,12 +8,12 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "YuiButton",
+  name: "LangButton"
 });
 </script>
 
 <style lang="stylus" scoped>
-.yui-button {
+.lang-button {
   border: none;
   outline: 0;
   padding: 8px 12px;

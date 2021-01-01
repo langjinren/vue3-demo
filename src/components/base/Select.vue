@@ -11,6 +11,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "YuiSelect",
+  name: "LangSelect"
 });
 </script>

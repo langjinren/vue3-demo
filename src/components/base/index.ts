@@ -3,8 +3,8 @@ import Button from './Button.vue';
 import Select from './Select.vue';
 
 const install = function (app: App<Element>) {
-  app.component('YuiButton', Button)
-  app.component('YuiSelect', Select)
+  app.component('LangButton', Button)
+  app.component('LangSelect', Select)
 }
 
 export default install

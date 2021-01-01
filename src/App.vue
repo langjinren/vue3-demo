@@ -1,8 +1,14 @@
 <template>
   <div class="wrapper">
-    <transition name="van-fade">
+    <!-- <transition name="van-fade">
       <router-view />
-    </transition>
+    </transition> -->
+    <router-view v-slot="{ Component }">
+      <transition>
+        <component :is="Component" />
+      </transition>
+    </router-view>
+
     <Tabbar route placeholder v-show="showFooter">
       <TabbarItem replace to="/" icon="home-o">Home</TabbarItem>
       <TabbarItem replace to="/about" icon="search">About</TabbarItem>

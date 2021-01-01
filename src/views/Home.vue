@@ -1,6 +1,10 @@
 <template>
   <div class="home text-center">
-    <header v-pin:[direction]="pinPadding" style="width: 100%; text-align: center" class="max640">
+    <header
+      v-pin:[direction]="pinPadding"
+      style="width: 100%; text-align: center"
+      class="max640"
+    >
       <p>
         Stick me
         <span class="text-color">{{ pinPadding }}</span>
@@ -11,17 +15,23 @@
     <p class="mg20 text-color">{{ time }}</p>
 
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <hello-world msg="Welcome to Your Vue.js + TypeScript App" />
     <p class="mg10 text-color">以下是自定义全局组件</p>
     <div class="mg-b20">
-      <YuiButton @click="handleClick()">自定义全局按钮</YuiButton>
+      <lang-button @click="handleClick()">自定义全局按钮</lang-button>
     </div>
     <div class="mg-b20">
-      <YuiSelect></YuiSelect>
+      <lang-select />
     </div>
     <div class="mg-b20 flex flex-center">
       自定义指令：
-      <input type="range" min="0" max="500" v-model="pinPadding" style="z-index: 9" />
+      <input
+        type="range"
+        min="0"
+        max="500"
+        v-model="pinPadding"
+        style="z-index: 9"
+      />
     </div>
     <Button type="success" @click="showToast">更改字体颜色</Button>
   </div>
@@ -29,9 +39,9 @@
 
 <script lang="ts">
 import dayjs from "dayjs";
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { defineComponent, onMounted, onBeforeUnmount, ref } from "vue";
 import { Button, Dialog, Toast } from "vant";
+import HelloWorld from "../components/HelloWorld.vue";
 
 export default defineComponent({
   name: "Home",
@@ -39,45 +49,52 @@ export default defineComponent({
     HelloWorld,
     Button,
   },
-  data() {
-    return {
-      direction: "top",
-      pinPadding: 0,
-      time: "",
-      timer: 0,
-      color: "red",
-      city: ["", "", ""],
-    };
-  },
-  methods: {
-    showToast() {
+  setup() {
+    const direction = ref<string>("top");
+    const pinPadding = ref<number>(0);
+    const time = ref<string>("");
+    const timer = ref<number>(0);
+    const color = ref<string>("red");
+    const city = ref<Array<string>>([]);
+
+    const showToast = () => {
       Toast("字体颜色已改蓝色");
-      this.color = "blue";
-    },
-    handleClick() {
+      color.value = "blue";
+    };
+
+    const handleClick = () => {
       Dialog({
         title: "标题",
         message: "这是一个全局按钮组件",
       });
-    },
-    initTime() {
-      this.time = dayjs().format("YYYY-MM-DD HH:mm:ss");
-      this.timer = setInterval(() => {
-        this.time = dayjs().format("YYYY-MM-DD HH:mm:ss");
+    };
+
+    const initTime = () => {
+      time.value = dayjs().format("YYYY-MM-DD HH:mm:ss");
+      timer.value = setInterval(() => {
+        time.value = dayjs().format("YYYY-MM-DD HH:mm:ss");
       }, 1000);
-    },
-  },
-  created() {
-    this.initTime();
-  },
-  beforeUnmount() {
-    clearInterval(this.timer);
+    };
+
+    onMounted(() => {
+      initTime();
+    });
+
+    onBeforeUnmount(() => {
+      clearInterval(timer.value);
+    });
+
+    return {
+      direction,
+      pinPadding,
+      color,
+      city,
+      time,
+      showToast,
+      handleClick,
+      initTime
+    };
   },
 });
 </script>
 
-<style vars="{ color }">
-.text-color {
-  color: var(--color);
-}
-</style>
