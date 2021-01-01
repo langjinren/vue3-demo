@@ -33,22 +33,28 @@
         style="z-index: 9"
       />
     </div>
-    <Button type="success" @click="showToast">更改字体颜色</Button>
+    <van-button type="success" @click="showToast">更改字体颜色</van-button>
+
+    <Inject />
+
   </div>
 </template>
 
 <script lang="ts">
 import dayjs from "dayjs";
-import { defineComponent, onMounted, onBeforeUnmount, ref } from "vue";
+import { defineComponent, onMounted, onBeforeUnmount, ref, provide } from "vue";
 import { Dialog, Toast } from "vant";
 import HelloWorld from "../components/HelloWorld.vue";
+import Inject from "../components/Inject.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
-    HelloWorld
+    HelloWorld,
+    Inject
   },
   setup() {
+    provide('user', 'langlang')
     const direction = ref<string>("top");
     const pinPadding = ref<number>(0);
     const time = ref<string>("");
