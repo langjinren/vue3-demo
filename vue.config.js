@@ -1,5 +1,5 @@
 const path = require('path')
-const vantTheme = path.resolve(__dirname, "./src/assets/theme.less")
+const vantTheme = path.resolve(__dirname, "./src/assets/css/theme.less")
 
 module.exports = {
   publicPath: "./",
@@ -12,7 +12,7 @@ module.exports = {
       // less: {
       //   lessOptions: {
       //     modifyVars: {
-      //       hack: `true; @import "./src/assets/theme.less;"`
+      //       hack: `true; @import "${vantTheme};"`
       //     }
       //   }
       // }

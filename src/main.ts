@@ -11,7 +11,7 @@ import './assets/css/main.styl'
 
 const app = createApp(App)
 
-// loadAllPlugins(app)
+loadAllPlugins(app)
 
 app.use(BaseComponents)
 app.use(BaseDirective)

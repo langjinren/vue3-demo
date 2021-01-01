@@ -1,6 +1,5 @@
 import { defineComponent, ref, reactive, onMounted } from 'vue';
 import { useExpose } from '@/composition/use-expose';
-import { Popup, Picker } from 'vant';
 import CITYS from './city.json';
 
 export default defineComponent({
@@ -98,8 +97,8 @@ export default defineComponent({
     })
 
     return () => (
-      <Popup v-model={[showPicker.value, 'show']} position="bottom">
-        <Picker
+      <van-popup v-model={[showPicker.value, 'show']} position="bottom">
+        <van-picker
           show-toolbar
           title="请选择省市区"
           ref={adsPicker}
@@ -108,7 +107,7 @@ export default defineComponent({
           onCancel={cancel}
           onConfirm={confirm}
         />
-      </Popup>
+      </van-popup>
     )
   }
 })

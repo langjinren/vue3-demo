@@ -3,70 +3,64 @@
     <h3 class="mg10">Todo List</h3>
     <div class="flex flex-center">
       <input ref="todoinput" v-focus="200" v-model="addTodoName" />
-      <Button @click="addTodoAction" size="small" type="primary">
+      <van-button @click="addTodoAction" size="small" type="primary">
         新增清单
-      </Button>
+      </van-button>
     </div>
     <div>
       <h3 class="mg10">任务清单</h3>
-      <CellGroup>
-        <Cell :key="item.id" v-for="item in undoneTodoList">
+      <van-cell-group>
+        <van-cell :key="item.id" v-for="item in undoneTodoList">
           <template #title>
             <span>---{{ item.name }}---</span>
           </template>
           <template #right-icon>
-            <Button @click="doneTodo(item)" size="small" type="success"
-              >已完成</Button
+            <van-button @click="doneTodo(item)" size="small" type="success"
+              >已完成</van-button
             >
-            <Button
+            <van-button
               @click="delTodoAction(item, true)"
               size="small"
               type="danger"
-              >删除</Button
+              >删除</van-button
             >
           </template>
-        </Cell>
-      </CellGroup>
+        </van-cell>
+      </van-cell-group>
     </div>
     <div class="done-todo-area">
       <h3 class="mg10">已完成的任务清单</h3>
-      <CellGroup>
-        <Cell :key="item.id" v-for="item in completedTodoList">
+      <van-cell-group>
+        <van-cell :key="item.id" v-for="item in completedTodoList">
           <template #title>
             <span>---{{ item.name }}---</span>
           </template>
           <template #right-icon>
-            <Button
+            <van-button
               @click="delTodoAction(item, false)"
               size="small"
               type="danger"
-              >删除</Button
+              >删除</van-button
             >
           </template>
-        </Cell>
-      </CellGroup>
+        </van-cell>
+      </van-cell-group>
     </div>
     <div class="mg10">
-      <Button @click="goAddress" block type="primary">地址列表</Button>
+      <van-button @click="goAddress" block type="primary">地址列表</van-button>
     </div>
     <div class="mg10 mg-t20">
-      <Button @click="goChat" block type="primary">聊天室</Button>
+      <van-button @click="goChat" block type="primary">聊天室</van-button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
-import { Button, Cell, CellGroup } from "vant";
 import router from "../router";
 
 export default defineComponent({
   name: "ToDoList",
-  components: {
-    Button,
-    Cell,
-    CellGroup
-  },
   setup() {
     // this调用
     const CurrentInstance = getCurrentInstance();

@@ -40,14 +40,13 @@
 <script lang="ts">
 import dayjs from "dayjs";
 import { defineComponent, onMounted, onBeforeUnmount, ref } from "vue";
-import { Button, Dialog, Toast } from "vant";
+import { Dialog, Toast } from "vant";
 import HelloWorld from "../components/HelloWorld.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
-    HelloWorld,
-    Button,
+    HelloWorld
   },
   setup() {
     const direction = ref<string>("top");

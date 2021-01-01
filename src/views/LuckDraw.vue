@@ -3,14 +3,23 @@
     <!-- 滚动号码 -->
     <div class="luckdraw-scroll">
       <ul class="bg-scroll">
-        <li v-for="(item, i) in list" :key="i" :class="{ 'anim' : animate && i == 0 }">
+        <li
+          v-for="(item, i) in list"
+          :key="i"
+          :class="{ anim: animate && i == 0 }"
+        >
           <span class="lkq-name">{{ item.phone }}</span>
         </li>
       </ul>
     </div>
     <!-- 抽奖弹窗 -->
     <div class="turntable">
-      <svg class="bulb svelte-ecndpu" viewBox="-6 -6 316 316" fill="currentColor" fill-rule="evenodd">
+      <svg
+        class="bulb svelte-ecndpu"
+        viewBox="-6 -6 316 316"
+        fill="currentColor"
+        fill-rule="evenodd"
+      >
         <g class="bulb-1 svelte-ecndpu">
           <circle cx="10" cy="10" r="4" />
           <circle cx="78" cy="4" r="4" />
@@ -48,15 +57,22 @@
       </svg>
       <ul class="awards-list">
         <li
-          v-for="(item,key) in awardList"
+          v-for="(item, key) in awardList"
           :key="item.id"
           class="awards-item"
-          :class="{'awards-item-draw':key===4,'run-item':item.runId===current}"
+          :class="{
+            'awards-item-draw': key === 4,
+            'run-item': item.runId === current,
+          }"
         >
-          <div v-if="key===4" @click="handleStart" class="draw-btn svelte-ecndpu">
+          <div
+            v-if="key === 4"
+            @click="handleStart"
+            class="draw-btn svelte-ecndpu"
+          >
             <span class="draw-btn-text">点击抽奖</span>
           </div>
-          <div v-else>{{item.name}}</div>
+          <div v-else>{{ item.name }}</div>
         </li>
       </ul>
     </div>
