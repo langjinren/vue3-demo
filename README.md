@@ -1,6 +1,6 @@
 # vue3-demo
 ### 预览
-See [demo](https://langjinren.github.io/vue3-demo/#/)
+See [项目预览](https://langjinren.github.io/vue3-demo/docs/)
 
 ## Project setup
 ```
