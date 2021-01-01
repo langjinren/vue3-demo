@@ -2,10 +2,10 @@ import { defineComponent, ref, reactive, nextTick, onMounted, onUnmounted } from
 import { useRouter } from "vue-router";
 import { NavBar } from "vant";
 import { questionList, answerList, mapList } from "./map-list"
-import "@/assets/css/chat.styl"
 import { easeBottom } from '@/utils/dom';
 import { MsgList } from "./chat"
 import { useHeight } from '@/composition/use-rect';
+import "@/assets/css/chat.styl"
 
 export default defineComponent(() => {
   const router = useRouter()
@@ -96,9 +96,9 @@ export default defineComponent(() => {
       ))}
     </div>
   ) : (
-    <div class="answers-wrapper max640">
-      <div class="loadingtxt fs12 lh20  mg10 text-center" v-show={showLoading.value}>{loadingText.value}</div>
-    </div>
+      <div class="answers-wrapper max640">
+        <div class="loadingtxt fs12 lh20  mg10 text-center" v-show={showLoading.value}>{loadingText.value}</div>
+      </div>
     )
 
   onMounted(() => {

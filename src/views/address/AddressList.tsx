@@ -5,7 +5,6 @@ import { AddressList, NavBar } from "vant";
 import { getLocalStorage, setLocalStorage } from '@/utils/storage';
 import { AddressInfo } from "./address"
 
-
 export default defineComponent(() => {
   const router = useRouter()
   const store = useStore()

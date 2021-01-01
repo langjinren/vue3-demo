@@ -11,7 +11,6 @@ export interface MapList {
     [k: string]: string
   }
 }
-
 export interface MsgList {
   message: string
   direction: string

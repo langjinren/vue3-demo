@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, RouteRecordRaw, createWebHistory } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -38,12 +38,29 @@ const routes: Array<RouteRecordRaw> = [
     path: '/chat/list',
     name: 'Chat',
     component: () => import(/* webpackChunkName: "chatpage" */ '@/views/chat')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'Home',
+    component: () => import('@/views/Home.vue')
   }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  // history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
+  scrollBehavior() {
+    return {
+      el: '#app',
+      top: 0
+    }
+  },
   routes
 })
+
+router.resolve({
+  name: 'Home',
+  params: { pathMatch: ['not', 'found'] },
+}).href
 
 export default router

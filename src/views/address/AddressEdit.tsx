@@ -11,7 +11,7 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const store = useStore()
-    router.push('/chat/list')
+    // router.push('/chat/list')
 
     const cityPicker = ref()
     const vanForm = ref()

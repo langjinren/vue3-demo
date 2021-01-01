@@ -3,7 +3,9 @@
     <h3 class="mg10">Todo List</h3>
     <div class="flex flex-center">
       <input ref="todoinput" v-focus="200" v-model="addTodoName" />
-      <Button @click="addTodoAction" size="small" type="primary">新增清单</Button>
+      <Button @click="addTodoAction" size="small" type="primary">
+        新增清单
+      </Button>
     </div>
     <div>
       <h3 class="mg10">任务清单</h3>
@@ -13,8 +15,15 @@
             <span>---{{ item.name }}---</span>
           </template>
           <template #right-icon>
-            <Button @click="doneTodo(item)" size="small" type="success">已完成</Button>
-            <Button @click="delTodoAction(item, true)" size="small" type="danger">删除</Button>
+            <Button @click="doneTodo(item)" size="small" type="success"
+              >已完成</Button
+            >
+            <Button
+              @click="delTodoAction(item, true)"
+              size="small"
+              type="danger"
+              >删除</Button
+            >
           </template>
         </Cell>
       </CellGroup>
@@ -27,7 +36,12 @@
             <span>---{{ item.name }}---</span>
           </template>
           <template #right-icon>
-            <Button @click="delTodoAction(item, false)" size="small" type="danger">删除</Button>
+            <Button
+              @click="delTodoAction(item, false)"
+              size="small"
+              type="danger"
+              >删除</Button
+            >
           </template>
         </Cell>
       </CellGroup>
@@ -44,16 +58,17 @@
 <script lang="ts">
 import { ref, reactive, defineComponent, getCurrentInstance } from "vue";
 import { Button, Cell, CellGroup } from "vant";
-import router from "@/router";
+import router from "../router";
 
 export default defineComponent({
   name: "ToDoList",
   components: {
     Button,
     Cell,
-    CellGroup,
+    CellGroup
   },
   setup() {
+    // this调用
     const CurrentInstance = getCurrentInstance();
 
     const addTodoName = ref(""); // input 绑定值
@@ -101,7 +116,10 @@ export default defineComponent({
     };
 
     const doneTodo = (item: { id: number; name: string }) => {
-      undoneTodoList.splice(undoneTodoList.findIndex((i) => i.id === item.id), 1);
+      undoneTodoList.splice(
+        undoneTodoList.findIndex((i) => i.id === item.id),
+        1
+      );
       completedTodoList.push(item);
     };
 
