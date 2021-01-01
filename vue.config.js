@@ -21,6 +21,12 @@ module.exports = {
   chainWebpack: config => {
     config.plugins.delete('preload')
     config.plugins.delete('prefetch')
+    config.output.filename('docs/js/[name].js').end();
+    config.output.chunkFilename('docs/js/[name].js').end();
+    config.plugin('extract-css').tap(args => [{
+      filename: `docs/css/[name].css`,
+      chunkFilename: `docs/css/[name].css`
+    }])
   },
   devServer: {
     port: 8010
