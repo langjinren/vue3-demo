@@ -11,7 +11,8 @@ import {
   CellGroup,
   Popup,
   Picker,
-  Field
+  Field,
+  SwipeCell
 } from "vant"
 import { createApp } from "vue"
 // import 'vant/lib/cell/index.less';
@@ -36,4 +37,5 @@ export default function loadComponent(app: ReturnType<typeof createApp>) {
   app.use(Popup)
   app.use(Picker)
   app.use(Field)
+  app.use(SwipeCell)
 }

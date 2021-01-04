@@ -9,7 +9,7 @@
 import { defineComponent, inject, ref, reactive, watch, toRefs, isReadonly} from "vue";
 
 export default defineComponent({
-  name: "Inject",
+  name: "Child",
   setup() {
     const user = ref(inject("user"));
     const userCopy = ref(inject("user_1"));

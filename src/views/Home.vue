@@ -2,7 +2,7 @@
   <div class="home text-center">
     <header
       v-pin:[direction]="pinPadding"
-      style="width: 100%; text-align: center"
+      style="width: 100%; text-align: center; z-index: 9999; "
       class="max640"
     >
       <p>
@@ -14,8 +14,8 @@
 
     <p class="mg20 text-color">{{ time }}</p>
 
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <hello-world msg="Welcome to Your Vue.js + TypeScript App" />
+    <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
+    <!-- <hello-world msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <p class="mg10 text-color">以下是自定义全局组件</p>
     <div class="mg-b20">
       <lang-button @click="handleClick()">自定义全局按钮</lang-button>
@@ -24,7 +24,7 @@
       <lang-select />
     </div>
     <div class="mg-b20 flex flex-center">
-      自定义指令：
+      指令
       <input
         type="range"
         min="0"
@@ -44,13 +44,13 @@
 import dayjs from "dayjs";
 import { defineComponent, onMounted, onBeforeUnmount, ref, provide, readonly } from "vue";
 import { Dialog, Toast } from "vant";
-import HelloWorld from "../components/HelloWorld.vue";
+// import HelloWorld from "../components/HelloWorld.vue";
 import Inject from "../components/Inject.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
-    HelloWorld,
+    // HelloWorld,
     Inject
   },
   setup() {
@@ -105,4 +105,19 @@ export default defineComponent({
   },
 });
 </script>
+
+
+
+<style>
+/* https://github.com/vuejs/rfcs/pull/231 */
+.text-color {
+  color: v-bind(color);
+}
+
+
+/* error */
+/* <style vars="{ color }"> */
+/* .text-color {color: var(--color);} */
+
+</style>
 

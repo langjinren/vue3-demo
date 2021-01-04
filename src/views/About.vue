@@ -5,7 +5,14 @@
       text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
     />
     <p class="mg20">This is a root element</p>
-    <div class="flex flex-column">
+    <!-- 输入任意文本 -->
+    <van-field ref="nameinput" v-model="formData.name" :label-width="labelWidth" label="姓名" />
+    <!-- 输入手机号，调起手机号键盘 -->
+    <van-field v-model="formData.phone" :label-width="labelWidth" type="tel" label="手机号" />
+    <!-- 输入密码 -->
+    <van-field v-model="formData.code" :label-width="labelWidth" type="password" label="验证码" />
+
+    <!-- <div class="flex flex-column">
       <div class="flex flex-center mg-t10">
         <label>姓名：</label>
         <input ref="nameinput" v-model.trim="formData.name" maxlength="16" />
@@ -18,9 +25,9 @@
         <label>验证码：</label>
         <input type="tel" v-model.trim="formData.code" maxlength="6" />
       </div>
-    </div>
-    <p class="mg-t10">{{ formData }}</p>
-    <van-button type="primary" @click="insertName()">姓名插入哈哈</van-button>
+    </div> -->
+    <pre style="text-align: left; ">{{ formData }}</pre>
+    <!-- <van-button type="primary" @click="insertName()">姓名插入哈哈</van-button> -->
     <van-steps direction="vertical" :active="1">
       <van-step>
         <h3>商品已下单</h3>
@@ -45,8 +52,9 @@ import { ref, reactive, onMounted } from "vue";
 export default {
   name: 'About',
   setup() {
-    const nameinput = ref();
-    const selectionStart = ref(0);
+    const nameinput = ref<HTMLInputElement>();
+    const labelWidth = ref<string>('3em')
+    // const selectionStart = ref(0);
     const twoNow = dayjs().subtract(2, "day").format("YYYY-MM-DD HH:mm:ss");
     const now = dayjs().format("YYYY-MM-DD HH:mm:ss");
     const now2 = dayjs().add(2, "day").format("YYYY-MM-DD HH:mm:ss");
@@ -71,10 +79,11 @@ export default {
       nameinput,
       formData,
       insertName,
-      selectionStart,
+      // selectionStart,
       twoNow,
       now,
       now2,
+      labelWidth
     };
   },
 };

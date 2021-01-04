@@ -1,50 +1,48 @@
 <template>
-  <div class="todo-list text-center mg20">
+  <div class="todo-list">
     <h3 class="mg10">Todo List</h3>
-    <div class="flex flex-center">
-      <input ref="todoinput" v-focus="200" v-model="addTodoName" />
-      <van-button @click="addTodoAction" size="small" type="primary">
-        新增清单
-      </van-button>
-    </div>
+    <van-field
+      v-model="addTodoName"
+      :autofocus="true"
+      center
+      clearable
+      placeholder="Todo List"
+    >
+      <template #button>
+        <van-button size="small" type="primary" @click="addTodoAction">新增清单</van-button>
+      </template>
+    </van-field>
     <div>
       <h3 class="mg10">任务清单</h3>
-      <van-cell-group>
-        <van-cell :key="item.id" v-for="item in undoneTodoList">
-          <template #title>
-            <span>---{{ item.name }}---</span>
-          </template>
-          <template #right-icon>
-            <van-button @click="doneTodo(item)" size="small" type="success"
-              >已完成</van-button
-            >
-            <van-button
-              @click="delTodoAction(item, true)"
-              size="small"
-              type="danger"
-              >删除</van-button
-            >
-          </template>
-        </van-cell>
-      </van-cell-group>
+      <van-swipe-cell
+       v-for="(item, index) of undoneTodoList"
+       :key="item.id"
+       >
+        <van-cell
+        :border="false"
+        :title="item.name"
+        :value="index == 0 ? '往左划' : ''"
+        />
+        <template #right>
+          <van-button square type="danger" text="删除" @click="delTodoAction(item, true)"/>
+          <van-button square type="primary" text="完成" @click="doneTodo(item)"/>
+        </template>
+      </van-swipe-cell>
     </div>
     <div class="done-todo-area">
       <h3 class="mg10">已完成的任务清单</h3>
-      <van-cell-group>
-        <van-cell :key="item.id" v-for="item in completedTodoList">
-          <template #title>
-            <span>---{{ item.name }}---</span>
-          </template>
-          <template #right-icon>
-            <van-button
-              @click="delTodoAction(item, false)"
-              size="small"
-              type="danger"
-              >删除</van-button
-            >
-          </template>
-        </van-cell>
-      </van-cell-group>
+      <van-swipe-cell
+       v-for="item_1 in completedTodoList"
+       :key="item_1.id"
+       >
+        <van-cell
+        :border="false"
+        :title="item_1.name"
+        />
+        <template #right>
+          <van-button square type="danger" text="删除" @click="delTodoAction(item, false)"/>
+        </template>
+      </van-swipe-cell>
     </div>
     <div class="mg10">
       <van-button @click="goAddress" block type="primary">地址列表</van-button>

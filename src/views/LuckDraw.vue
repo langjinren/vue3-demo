@@ -235,6 +235,7 @@ export default {
     };
 
     onMounted(async () => {
+      // https://vue3js.cn/global/nextTick.html
       await nextTick();
       setInterval(scroll, 2000);
     });
