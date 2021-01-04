@@ -19,14 +19,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, computed } from "vue";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   name: "App",
-  computed: {
-    showFooter() {
-      return this.$route.path.split("/").length < 3;
-    },
-  },
+  setup(props, context) {
+    const showFooter = ref(false)
+    const route = useRoute()
+    const plus = computed({
+      // 取值函数
+      get: () => showFooter.value,
+      // 赋值函数
+      set: val => showFooter.value = val
+    })
+    plus.value = route.path.split("/").length < 3;
+    return {
+      showFooter
+    }
+  }
 });
 </script>

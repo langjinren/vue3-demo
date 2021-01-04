@@ -1,5 +1,5 @@
 const path = require('path')
-const vantTheme = path.resolve(__dirname, "./src/assets/css/theme.less")
+// const vantTheme = path.resolve(__dirname, "./src/assets/css/theme.less")
 
 module.exports = {
   publicPath: "./",
@@ -8,15 +8,13 @@ module.exports = {
   css: {
     extract: true,
     sourceMap: false,
-    loaderOptions: {
-      // less: {
-      //   lessOptions: {
-      //     modifyVars: {
-      //       hack: `true; @import "${vantTheme};"`
-      //     }
-      //   }
-      // }
-    }
+    // loaderOptions: {
+    //   less: {
+    //     modifyVars: {
+    //       hack: `true; @import "${vantTheme};"`
+    //     }
+    //   }
+    // }
   },
   chainWebpack: config => {
     config.plugins.delete('preload')

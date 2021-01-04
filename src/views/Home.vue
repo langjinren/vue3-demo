@@ -34,15 +34,15 @@
       />
     </div>
     <van-button type="success" @click="showToast">更改字体颜色</van-button>
-
     <Inject />
+    <van-field v-model="text" label="provide" placeholder="provide/inject"/>
 
   </div>
 </template>
 
 <script lang="ts">
 import dayjs from "dayjs";
-import { defineComponent, onMounted, onBeforeUnmount, ref, provide } from "vue";
+import { defineComponent, onMounted, onBeforeUnmount, ref, provide, readonly } from "vue";
 import { Dialog, Toast } from "vant";
 import HelloWorld from "../components/HelloWorld.vue";
 import Inject from "../components/Inject.vue";
@@ -54,13 +54,15 @@ export default defineComponent({
     Inject
   },
   setup() {
-    provide('user', 'langlang')
     const direction = ref<string>("top");
     const pinPadding = ref<number>(0);
     const time = ref<string>("");
     const timer = ref<number>(0);
     const color = ref<string>("red");
     const city = ref<Array<string>>([]);
+    const text = ref<string>('lang');
+    provide('user', text)
+    provide('user_1', readonly(text))
 
     const showToast = () => {
       Toast("字体颜色已改蓝色");
@@ -97,7 +99,8 @@ export default defineComponent({
       time,
       showToast,
       handleClick,
-      initTime
+      initTime,
+      text
     };
   },
 });
